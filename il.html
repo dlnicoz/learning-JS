@@ -1,0 +1,67 @@
+hi dheeraj sahani here
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>first project</title>
+    </head>
+
+    <body>
+
+        <h1 style="text-align: center;">know the electricity bill of particular applliance.</h1>
+        <form id="myform" name="myform">
+            <fieldset>
+
+                <legend><b>fill the details.</b> </legend>
+
+                <label id="noa">Enter the name of appliance:</label>
+                <input type="text" name="fname" placeholder="click here to write"><br><br>
+
+                <label id="noa">Watt per/hour :&nbsp &nbsp &nbsp &nbsp
+                    &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </label>
+                <input type="text" name="watt" placeholder="like 1000,etc"><br><br>
+
+                <label id="noa">Used per/hour in a day : &nbsp &nbsp &nbsp &nbsp</label>
+                <input type="text" name="day" placeholder="like 10 hr"><br><br>
+
+                <label id="noa">Enter the per unit cost : &nbsp &nbsp &nbsp &nbsp</label>
+                <input type="text" name="unit_cost" placeholder="like 5rs "><br><br>
+
+                <p><b>Note : </b>see your bill if your unit is below 100 than per unit cost is 5rs<br> or else per unit
+                    cost is 8rs. </p>
+                <input type="button" name="submit" value="submit" onclick="return(myfunction())">
+                <strong><b>
+                        <p id="p1">result</p>
+                    </b></strong>
+
+                    <strong><b>
+                        <p id="p2"></p>
+                    </b></strong>
+            </fieldset>
+        </form>
+        <script>
+
+            function myfunction() {
+                var name = document.myform.fname.value;
+                var watt1 = document.myform.watt.value;
+                var day1 = document.myform.day.value;
+                var unit1 = document.myform.unit_cost.value;
+
+                var a = watt1 * day1;
+                var b = a * 30;                       // returns monthly used watt;
+                // var c = b*12;                      //returns anually used watt  ;                         
+
+                var gtunit = b / 1000;
+                var gtrs = gtunit * unit1;   //montly;
+                var yearly = gtrs * 12;     //yearly ;
+                document.getElementById("p1").innerHTML = "Your " + " " + name + "electricity  cost  monthly is " + " " + gtrs+"rs";
+                document.getElementById("p2").innerHTML = "Your " + " " + name + "electricity  cost  yearly is " + " " + yearly+ "rs";
+
+            }
+
+
+        </script>
+    </body>
