@@ -52,19 +52,21 @@ Plug 'alvan/vim-closetag'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Make your Vim/Neovim as smart as VSCode
 
-let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-git', 'coc-json',  'coc-tslint', 'coc-tslint-plugin', 'coc-pairs', 'coc-angular', 'coc-highlight', 'coc-html', 'coc-css', 'coc-vetur', 'coc-cssmodules','coc-python', 'coc-snippets', 'coc-yaml', 'coc-tailwindcss', 'coc-react-refactor', 'coc-svelte', 'coc-emmet']
+let g:coc_global_extensions = ['coc-prettier', 'coc-tsserver', 'coc-git', 'coc-json',  'coc-tslint', 'coc-tslint-plugin', 'coc-pairs', 'coc-angular', 'coc-highlight', 'coc-html', 'coc-css', 'coc-vetur', 'coc-cssmodules','coc-python', 'coc-snippets', 'coc-yaml', 'coc-tailwindcss', 'coc-react-refactor', 'coc-svelte', 'coc-emmet','coc-eslint']
 " color scheme
 
 Plug 'KabbAmine/vCoolor.vim'
 let g:vcoolor_map = '<F6>'
 Plug 'drewtempelmeyer/palenight.vim'
 " Formatter
+
+
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'maxmellon/vim-jsx-pretty'
 " Comment and uncomment lines
 Plug 'preservim/nerdcommenter'
-
+let NERDTreeShowHidden=1
 " A light and configurable statusline/tabline plugin for Vim
 "Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
@@ -100,7 +102,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Python code formatter
-Plug 'ambv/black'
+"Plug 'ambv/black'
 
 " Gruvbox color theme
 Plug 'morhetz/gruvbox'
@@ -136,15 +138,6 @@ map gs <Plug>Sneak_;
 highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
 highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
 
-" Cool prompts
-" let g:sneak#prompt = '🕵'
-" let g:sneak#prompt = '🔎'
-
-" I like quickscope better for this since it keeps me in the scope of a single line
-" map f <Plug>Sneak_f
-" map F <Plug>Sneak_F
-" map t <Plug>Sneak_t
-" map T <Plug>Sneak_Tlet g:sneak#label = 1
 
 " Set mapleader to space
 " sneak ends
@@ -164,11 +157,12 @@ nmap <leader><leader>u :UndotreeToggle<cr>
 nmap <leader><leader>f :Files<cr>
 nmap <leader><leader><leader>g :GoMetaLinter<cr>
 nnoremap <C-p> :GFiles<CR>
-nnoremap <leader><leader>c :call NERDComment(0,"toggle")<CR>
-vnoremap <leader><leader>c :call NERDComment(0,"toggle")<CR>
-nnoremap <leader>. :bnext<CR>
-nnoremap <leader>, :bprevious<CR>
+nnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <leader><leader>c :call nerdcommenter#Comment(0,"toggle")<CR>
+nnoremap m, :bnext<CR>
+nnoremap ,m :bprevious<CR>
 
+nnoremap .. :bd<CR>
 """"""""""""""""""""""""coc nvim settings start""""""""""""""""""""""""
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
@@ -260,8 +254,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>x  <Plug>(coc-format-selected)
+nmap <leader>x  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -416,8 +410,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <silent> <C-Left> :vertical resize +3<CR>
-nnoremap <silent> <C-Right> :vertical resize -3<CR>
+nnoremap <silent> <C-Right> :vertical resize +3<CR>
+nnoremap <silent> <C-Left> :vertical resize -3<CR>
 nnoremap <silent> <C-Up> :resize +3<CR>
 nnoremap <silent> <C-Down> :resize -3<CR>
 
@@ -434,22 +428,22 @@ map <leader>tt :vnew term://bash<CR>
 " filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
 "
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
 
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.xml,*.js,*.tsx)'
 
 " filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
 "
-let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js,tsx'
 
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,xml,js,tsx'
 
 " integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
@@ -462,8 +456,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_regions = {
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
     \ }
 
 " Shortcut for closing tags, default is '>'
@@ -474,9 +466,21 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-"close tag end
-"
-"
+"js
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+"augroup javascript_folding
+    "au!
+    "au FileType javascript setlocal foldmethod=syntax
+"augroup END
+
+"css syntax
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
 """""""""""""""""""""""""""""""iori end"""""""""""""""""""""""""""""""""""""""""""
 " Set the prettier CLI executable path
 let g:prettier#exec_cmd_path = "~/.vim/plugged/vim-prettier/node_modules/prettier"
