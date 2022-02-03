@@ -34,4 +34,9 @@ let addition = (a, b, callback1) => {
   let sum = a * b;
   callback1(sum);
 };
-addition(34, 54, myDisplay);
+let pp = () => (document.getElementById("test").innerHTML = "i am late sorry");
+//addition(34, 54, myDisplay);
+//lets learn Async JS
+setTimeout(addition(38, 31, myDisplay), 3000);
+
+setTimeout(pp, 8000);
