@@ -1,4 +1,4 @@
-console.log('dhehreaj 1 log');
+console.log("dhehreaj 1 log");
 
 //this is normal JS behaviour
 // setTimeout(() => {
@@ -16,19 +16,22 @@ console.log('dhehreaj 1 log');
 // console.log('dhehreaj 6 log');
 // console.log('dhehreaj 7 log');
 // async function ASY(num) {
-function myDis(a, b) {
-    let txt = `${a} is ${b} years old`;
-    window.document.getElementById('h1').innerHTML = txt;
-}
-function mt(naam, age) {
-    let a = naam.toUpperCase();
-    // let element = element.childnodes;
-    return myDis(a, age)
-}
+//function myDis(a, b) {
+//let txt = `${a} is ${b} years old`;
+//window.document.getElementById('h1').innerHTML = txt;
+//}
+//function mt(naam, age) {
+//let a = naam.toUpperCase();
+//// let element = element.childnodes;
+//return myDis(a, age)
+//}
 
-mt('alex', 19);
+//mt('alex', 19);
 
-
-
-
-
+//lets learn first callback
+let myDisplay = (some) => (document.getElementById("test").innerHTML = some);
+let addition = (a, b, callback1) => {
+  let sum = a * b;
+  callback1(sum);
+};
+addition(34, 54, myDisplay);
